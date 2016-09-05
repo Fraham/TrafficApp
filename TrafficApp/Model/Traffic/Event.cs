@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Text;
 using System.Text.RegularExpressions;
 using TrafficApp.Model.Highway;
 using TrafficApp.Model.Problem;
@@ -251,7 +252,44 @@ namespace TrafficApp.Model.Traffic
         {
             get
             {
-                return string.Format("Road: {0}, Direction: {1}, Area {2}, Status {3}, Time To Clear: {4}, Return To Normal: {5}, Lanes Closed: {6}, Reason {7}, Delay {8}", Road.ToString, Direction, AreaEffected, Status, StartClear + "-" + EndClear, StartNormal + "-" + EndNormal, LanesClosed, Reason.ToString, Delay);
+                StringBuilder sb = new StringBuilder();
+
+                sb.Append(string.Format("Road: {0}", Road.Name));
+
+                if (!Direction.Equals("Unknown"))
+                {
+                    sb.Append(string.Format(", Direction: {0}", Direction));
+                }
+                if (!AreaEffected.Equals("Unknown"))
+                {
+                    sb.Append(string.Format(", Area: {0}", AreaEffected));
+                }
+                if (!Status.Equals("Unknown"))
+                {
+                    sb.Append(string.Format(", Status: {0}", Status));
+                }
+                if (!StartClear.Equals("Unknown"))
+                {
+                    sb.Append(string.Format(", Time To Clear: {0}", StartClear + " - " + EndClear));
+                }
+                if (!StartNormal.Equals("Unknown"))
+                {
+                    sb.Append(string.Format(", Return To Normal: {0}", StartNormal + " - " + EndNormal));
+                }
+                if (!LanesClosed.Equals("Unknown"))
+                {
+                    sb.Append(string.Format(", Lanes Closed: {0}", LanesClosed));
+                }
+                if (!Reason.Reason.Equals("Unknown"))
+                {
+                    sb.Append(string.Format(", Reason: {0}", Reason.ToString));
+                }
+                if (!Delay.Equals("Unknown"))
+                {
+                    sb.Append(string.Format(", Delay: {0}", Delay));
+                }
+
+                return sb.ToString();
             }
         }
 
