@@ -251,7 +251,7 @@ namespace TrafficApp.Model.Traffic
         {
             get
             {
-                return string.Format("Road: {0}, Direction: {1}, Area {2}, Status {3}, Time To Clear: {4}, Return To Normal: {5}, Lanes Closed: {6}, Reason {7}, Delay {8}", Road.ToString, Direction, AreaEffected, Status, StartClear + " " + EndClear, StartNormal + " " + EndNormal, LanesClosed, Reason.ToString, Delay);
+                return string.Format("Road: {0}, Direction: {1}, Area {2}, Status {3}, Time To Clear: {4}, Return To Normal: {5}, Lanes Closed: {6}, Reason {7}, Delay {8}", Road.ToString, Direction, AreaEffected, Status, StartClear + "-" + EndClear, StartNormal + "-" + EndNormal, LanesClosed, Reason.ToString, Delay);
             }
         }
 

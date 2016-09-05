@@ -41,5 +41,10 @@ namespace TrafficApp
             await traffic.Process();
             textBlock.Text = traffic.ToString;
         }
+
+        private async void btnRefreshClick(object sender, RoutedEventArgs e)
+        {
+            await LoadTraffic();
+        }
     }
 }

@@ -9,8 +9,12 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <GridView x:Name="gridViewButton" Grid.Row="0"  HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Button x:Name="btnRefresh" Content="Refresh" Click="btnRefreshClick" Margin="25,10,25,25"/>
+        </GridView>
         <GridView x:Name="gridView" Grid.Row="1"  HorizontalAlignment="Left" VerticalAlignment="Top">
             <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top"  Margin="25,25,25,25"/>
         </GridView>
