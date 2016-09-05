@@ -51,8 +51,6 @@ namespace TrafficApp.Model.Traffic
 
             var feed = await client.RetrieveFeedAsync(feedUri);
 
-            Debug.WriteLine("Got Feed");
-
             foreach (SyndicationItem item in feed.Items)
             {
                 try
@@ -71,36 +69,6 @@ namespace TrafficApp.Model.Traffic
 
                 }
             }
-            Debug.WriteLine("Done Items " + Events.Count);
-        }
-
-        private void ProcessItems(IEnumerable<SyndicationItem> items)
-        {
-            Debug.WriteLine("Process Items");
-            ProblemRoads = new List<Road>();
-            foreach (SyndicationItem item in items)
-            {
-                try
-                {
-                    Event newEvent = new Event(item.Title.Text, item.Summary.Text);
-                    newEvent.Process();
-                    Events.Add(newEvent);
-
-                    if (!ProblemRoads.Contains(newEvent.Road))
-                    {
-                        ProblemRoads.Add(newEvent.Road);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    
-                }
-            }
-        }
-
-        public async void GetRSSFeed()
-        {
-
         }
 
         public List<Event> Events
@@ -138,15 +106,15 @@ namespace TrafficApp.Model.Traffic
         {
             get
             {
-                StringBuilder sb = new StringBuilder();
+                StringBuilder stringBuilder = new StringBuilder();
 
                 foreach (Event e in events)
                 {
-                    sb.Append(e.ToString);
-                    sb.Append(System.Environment.NewLine);
+                    stringBuilder.Append(e.ToString);
+                    stringBuilder.Append(System.Environment.NewLine);
                 }
 
-                return sb.ToString();
+                return stringBuilder.ToString();
             }
         }
 

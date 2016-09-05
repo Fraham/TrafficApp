@@ -32,18 +32,19 @@ namespace TrafficApp
 
         private void OnLoad(object sender, RoutedEventArgs e)
         {
-            LoadTraffic();
+            //LoadTraffic();
         }
 
         private async Task LoadTraffic()
         {
-            Debug.WriteLine("New Traffic");
             Traffic traffic = new Traffic();
-            Debug.WriteLine("Process");
             await traffic.Process();
-            Debug.WriteLine("Display");
             textBlock.Text = traffic.ToString;
-            Debug.WriteLine(traffic.Events.Count);
+        }
+
+        private async void btnRefreshClick(object sender, RoutedEventArgs e)
+        {
+            await LoadTraffic();
         }
     }
 }
