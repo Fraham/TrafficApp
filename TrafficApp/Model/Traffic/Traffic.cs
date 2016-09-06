@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml;
 using TrafficApp.Model.Highway;
 using Windows.Web.Syndication;
 
@@ -43,8 +37,10 @@ namespace TrafficApp.Model.Traffic
             ProcessItems(feed.Items);*/
         }
 
-        public async Task Process()
+        public async Task<string> Process(bool showMotorways, bool showARoads)
         {
+            Events = new List<Event>();
+
             SyndicationClient client = new SyndicationClient();
 
             Uri feedUri = new Uri(TrafficURL);
@@ -66,9 +62,43 @@ namespace TrafficApp.Model.Traffic
                 }
                 catch (Exception ex)
                 {
-
                 }
             }
+
+            return Filter(showMotorways, showARoads);
+        }
+
+        private string EventsListToString(List<Event> eventList)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            foreach (Event e in eventList)
+            {
+                stringBuilder.Append(e.ToString);
+                stringBuilder.Append(Environment.NewLine);
+                stringBuilder.Append(Environment.NewLine);
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        public string Filter(bool showMotorways, bool showARoads)
+        {
+            List<Event> eventList = new List<Event>();
+
+            foreach (Event e in Events)
+            {
+                if (e.Road is Motorway && showMotorways)
+                {
+                    eventList.Add(e);
+                }
+                if (e.Road is ARoad && showARoads)
+                {
+                    eventList.Add(e);
+                }
+            }
+
+            return EventsListToString(eventList);
         }
 
         public List<Event> Events
@@ -106,15 +136,7 @@ namespace TrafficApp.Model.Traffic
         {
             get
             {
-                StringBuilder stringBuilder = new StringBuilder();
-
-                foreach (Event e in events)
-                {
-                    stringBuilder.Append(e.ToString);
-                    stringBuilder.Append(System.Environment.NewLine);
-                }
-
-                return stringBuilder.ToString();
+                return EventsListToString(Events);
             }
         }
 

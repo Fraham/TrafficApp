@@ -9,11 +9,13 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <GridView x:Name="gridViewButton" Grid.Row="0"  HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Button x:Name="btnRefresh" Content="Refresh" Click="btnRefreshClick" Margin="25,10,25,25"/>
+        <GridView x:Name="gridViewButton" Grid.Row="0">
+            <Button x:Name="btnRefresh" Content="Refresh" Click="btnRefreshClick" Margin="20,0,20,0"/>
+            <ToggleButton x:Name="tbtnMotoway" Content="Motorway" IsChecked="True" Click="tbtnMotorwayClicked"/>
+            <ToggleButton x:Name="tbtnARoad" Content="A Road" IsChecked="True" Click="tbtnARoadClicked"/>
         </GridView>
         <GridView x:Name="gridView" Grid.Row="1"  HorizontalAlignment="Left" VerticalAlignment="Top">
             <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top"  Margin="25,25,25,25"/>
