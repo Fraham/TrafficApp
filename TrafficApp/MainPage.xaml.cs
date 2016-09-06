@@ -23,6 +23,11 @@ namespace TrafficApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private bool showMotorways = true;
+        private bool showARoads = true;
+
+        Traffic traffic;
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -37,14 +42,47 @@ namespace TrafficApp
 
         private async Task LoadTraffic()
         {
-            Traffic traffic = new Traffic();
-            await traffic.Process();
-            textBlock.Text = traffic.ToString;
+            textBlock.Text = await Traffic.Process(showMotorways, showARoads);
+        }
+
+        private void FilterTraffic()
+        {
+            textBlock.Text = Traffic.Filter(showMotorways, showARoads);
         }
 
         private async void btnRefreshClick(object sender, RoutedEventArgs e)
         {
-            await LoadTraffic();
+            await LoadTraffic();            
+        }
+
+        public Traffic Traffic
+        {
+            get
+            {
+                if (traffic == null)
+                {
+                    traffic = new Traffic();
+                }
+
+                return traffic;
+            }
+
+            set
+            {
+                traffic = value;
+            }
+        }
+
+        private void tbtnMotorwayClicked(object sender, RoutedEventArgs e)
+        {
+            showMotorways = (bool)((ToggleButton)sender).IsChecked;
+            FilterTraffic();
+        }
+
+        private void tbtnARoadClicked(object sender, RoutedEventArgs e)
+        {
+            showARoads = (bool)((ToggleButton)sender).IsChecked;
+            FilterTraffic();
         }
     }
 }
