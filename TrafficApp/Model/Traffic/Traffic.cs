@@ -52,7 +52,7 @@ namespace TrafficApp.Model.Traffic
                         ProblemRoads.Add(newEvent.Road);
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                 }
             }

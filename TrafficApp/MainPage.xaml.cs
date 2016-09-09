@@ -52,7 +52,8 @@ namespace TrafficApp
 
         private async void btnRefreshClick(object sender, RoutedEventArgs e)
         {
-            await LoadTraffic();            
+            textBlock.Text = "";
+            await LoadTraffic();         
         }
 
         public Traffic Traffic

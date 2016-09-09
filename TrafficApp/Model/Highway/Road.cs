@@ -126,7 +126,7 @@ namespace TrafficApp.Model.Highway
                     }
                 }
             }
-            catch (FileNotFoundException ex)
+            catch (FileNotFoundException)
             {
             }
         }

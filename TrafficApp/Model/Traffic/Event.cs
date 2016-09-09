@@ -406,7 +406,7 @@ namespace TrafficApp.Model.Traffic
                             {
                                 DelayedMinutes = int.Parse(match.Groups[2].Value);
                             }
-                            catch (FormatException fe)
+                            catch (FormatException)
                             {
                                 DelayedMinutes = 0;
                             }
@@ -419,7 +419,7 @@ namespace TrafficApp.Model.Traffic
                             {
                                 minutes = int.Parse(match.Groups[4].Value) * 60;
                             }
-                            catch (FormatException fe)
+                            catch (FormatException)
                             {
                                 minutes = 0;
                             }

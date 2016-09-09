@@ -131,7 +131,7 @@ namespace TrafficApp.Model.Problem
                     }
                 }
             }
-            catch (FileNotFoundException ex)
+            catch (FileNotFoundException)
             {
 
             }
