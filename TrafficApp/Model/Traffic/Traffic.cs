@@ -29,14 +29,6 @@ namespace TrafficApp.Model.Traffic
             Events = events;
         }
 
-        public void Process(string xml)
-        {
-            /*XmlReader reader = XmlReader.Create(xml);
-            SyndicationFeed feed = SyndicationFeed.Load(reader);
-
-            ProcessItems(feed.Items);*/
-        }
-
         public async Task<string> Process(bool showMotorways, bool showARoads)
         {
             Events = new List<Event>();

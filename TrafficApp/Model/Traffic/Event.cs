@@ -35,8 +35,6 @@ namespace TrafficApp.Model.Traffic
         {
             Title = title;
             Summary = summary;
-
-            Debug.WriteLine(Summary);
         }
 
         public Event(string location, string status, string timeToClear, string returnToNormal, string lanesClosed, TrafficProblem reason, Road road, string startClear, string endClear, string startNormal, string endNormal, string delay, int delayedMinutes, string direction, string areaAffected)
@@ -71,7 +69,6 @@ namespace TrafficApp.Model.Traffic
 
         public void Process()
         {
-            //Console.WriteLine(Summary);
             Status = ProcessRegex(@"Status : (.*)", 1).Trim();
             Location = ProcessRegex(@"Location : The (.*)", 1).Trim();
             TimeToClear = ProcessRegex(@"Time To Clear : (.*)", 1).Trim();
