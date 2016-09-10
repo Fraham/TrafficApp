@@ -7,18 +7,28 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <GridView x:Name="gridViewButton" Grid.Row="0">
-            <Button x:Name="btnRefresh" Content="Refresh" Click="btnRefreshClick" Margin="20,0,20,0"/>
-            <ToggleButton x:Name="tbtnMotoway" Content="Motorway" IsChecked="True" Click="tbtnMotorwayClicked"/>
-            <ToggleButton x:Name="tbtnARoad" Content="A Road" IsChecked="True" Click="tbtnARoadClicked"/>
-        </GridView>
-        <GridView x:Name="gridView" Grid.Row="1"  HorizontalAlignment="Left" VerticalAlignment="Top">
-            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top"  Margin="25,25,25,25"/>
-        </GridView>
-    </Grid>
+    <SplitView x:Name="splitView" DisplayMode="CompactOverlay" IsPaneOpen="False" CompactPaneLength="50" OpenPaneLength="150">
+        <SplitView.Pane>
+            <StackPanel Background="Gray">
+                <Button x:Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Width="50" Height="50" Background="Transparent" Click="HamburgerButton_Click" />
+
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="MenuButton1" FontFamily="Segoe MDL2 Assets" Content="&#xE825;" Width="50" Height="50" Background="Transparent" Click="AllMenuClick" />
+                    <TextBlock Text="All" FontSize="18" VerticalAlignment="Center" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="MenuButton2" FontFamily="Segoe MDL2 Assets" Content="&#xE10F;" Width="50" Height="50" Background="Transparent" Click="MotorwayMenuClick" />
+                    <TextBlock Text="Motorways" FontSize="18" VerticalAlignment="Center" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="MenuButton3" FontFamily="Segoe MDL2 Assets" Content="&#xE1D6;" Width="50" Height="50" Background="Transparent" Click="ARoadMenuClick" />
+                    <TextBlock Text="A Roads" FontSize="18" VerticalAlignment="Center" />
+                </StackPanel>
+            </StackPanel>
+        </SplitView.Pane>
+        <SplitView.Content>
+            <Frame x:Name="splitViewFrame">
+            </Frame>            
+        </SplitView.Content>
+    </SplitView>
 </Page>

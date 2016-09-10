@@ -26,7 +26,7 @@ namespace TrafficApp
         private bool showMotorways = true;
         private bool showARoads = true;
 
-        Traffic traffic;
+        static Traffic traffic;
 
         public MainPage()
         {
@@ -42,9 +42,16 @@ namespace TrafficApp
 
         private async Task LoadTraffic()
         {
-            textBlock.Text = await Traffic.Process(showMotorways, showARoads);
-        }
+            await Traffic.Process(showMotorways, showARoads);
 
+            var frame = splitViewFrame as Frame;
+            Page page = frame?.Content as Page;
+            if (page?.GetType() != typeof(Views.Traffic.All))
+            {
+                frame.Navigate(typeof(Views.Traffic.All));
+            }
+        }
+        /*
         private void FilterTraffic()
         {
             textBlock.Text = Traffic.Filter(showMotorways, showARoads);
@@ -54,9 +61,9 @@ namespace TrafficApp
         {
             textBlock.Text = "";
             await LoadTraffic();         
-        }
+        }*/
 
-        public Traffic Traffic
+        public static Traffic Traffic
         {
             get
             {
@@ -74,16 +81,42 @@ namespace TrafficApp
             }
         }
 
-        private void tbtnMotorwayClicked(object sender, RoutedEventArgs e)
+        
+
+        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
         {
-            showMotorways = (bool)((ToggleButton)sender).IsChecked;
-            FilterTraffic();
+            splitView.IsPaneOpen = !splitView.IsPaneOpen;
         }
 
-        private void tbtnARoadClicked(object sender, RoutedEventArgs e)
+        private void MotorwayMenuClick(object sender, RoutedEventArgs e)
         {
-            showARoads = (bool)((ToggleButton)sender).IsChecked;
-            FilterTraffic();
+            var frame = splitViewFrame as Frame;
+            Page page = frame?.Content as Page;
+            if (page?.GetType() != typeof(Views.Traffic.Motorway))
+            {
+                frame.Navigate(typeof(Views.Traffic.Motorway));
+            }
+        }
+
+        private void ARoadMenuClick(object sender, RoutedEventArgs e)
+        {
+            var frame = splitViewFrame as Frame;
+            Page page = frame?.Content as Page;
+            if (page?.GetType() != typeof(Views.Traffic.ARoad))
+            {
+                frame.Navigate(typeof(Views.Traffic.ARoad));
+            }
+            
+        }
+
+        private void AllMenuClick(object sender, RoutedEventArgs e)
+        {
+            var frame = splitViewFrame as Frame;
+            Page page = frame?.Content as Page;
+            if (page?.GetType() != typeof(Views.Traffic.All))
+            {
+                frame.Navigate(typeof(Views.Traffic.All));
+            }
         }
     }
 }

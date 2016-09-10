@@ -104,7 +104,16 @@
     <Compile Include="Model\Problem\TrafficProblem.cs" />
     <Compile Include="Model\Traffic\Event.cs" />
     <Compile Include="Model\Traffic\Traffic.cs" />
+    <Compile Include="Views\Traffic\All.xaml.cs">
+      <DependentUpon>All.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Traffic\ARoad.xaml.cs">
+      <DependentUpon>ARoad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Traffic\Motorway.xaml.cs">
+      <DependentUpon>Motorway.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -130,6 +139,18 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Traffic\All.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Traffic\ARoad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Traffic\Motorway.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup />
