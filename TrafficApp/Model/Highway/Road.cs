@@ -20,7 +20,7 @@ namespace TrafficApp.Model.Highway
             Name = name;
         }
 
-        public static List<Road> GetAll()
+        public static IEnumerable<Road> GetAll()
         {
             return Roads;
         }

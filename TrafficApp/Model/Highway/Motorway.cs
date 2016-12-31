@@ -1,8 +1,5 @@
-﻿using System;
+﻿using System.Linq;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TrafficApp.Model.Highway
 {
@@ -12,19 +9,9 @@ namespace TrafficApp.Model.Highway
         {
         }
 
-        public new List<Road> GetAll()
+        public new IEnumerable<Road> GetAll()
         {
-            List<Road> roads = new List<Road>();
-
-            foreach (Road road in Roads)
-            {
-                if (road is Motorway)
-                {
-                    roads.Add(road);
-                }
-            }
-
-            return roads;
+            return Roads.Where(t => t is Motorway);
         }
 
         // override object.Equals
