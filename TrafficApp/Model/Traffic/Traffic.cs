@@ -9,10 +9,10 @@ namespace TrafficApp.Model.Traffic
 {
     public class Traffic
     {
-        private List<Event> events = new List<Event>();
+        private ICollection<Event> events;
         private string trafficURL = "";
 
-        private List<Road> problemRoads = new List<Road>();
+        private ICollection<Road> problemRoads;
 
         public Traffic()
         {
@@ -24,7 +24,7 @@ namespace TrafficApp.Model.Traffic
             TrafficURL = trafficURL;
         }
 
-        public Traffic(List<Event> events)
+        public Traffic(ICollection<Event> events)
         {
             Events = events;
         }
@@ -60,7 +60,7 @@ namespace TrafficApp.Model.Traffic
             return Filter(showMotorways, showARoads);
         }
 
-        private string EventsListToString(List<Event> eventList)
+        private string EventsListToString(IEnumerable<Event> eventList)
         {
             StringBuilder stringBuilder = new StringBuilder();
 
@@ -93,11 +93,11 @@ namespace TrafficApp.Model.Traffic
             return EventsListToString(eventList);
         }
 
-        public List<Event> Events
+        public ICollection<Event> Events
         {
             get
             {
-                return events;
+                return events ?? new List<Event>(); ;
             }
 
             set
@@ -132,11 +132,11 @@ namespace TrafficApp.Model.Traffic
             }
         }
 
-        public List<Road> ProblemRoads
+        public ICollection<Road> ProblemRoads
         {
             get
             {
-                return problemRoads;
+                return problemRoads ?? new List<Road>();
             }
 
             set

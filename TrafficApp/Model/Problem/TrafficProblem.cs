@@ -13,7 +13,7 @@ namespace TrafficApp.Model.Problem
     public class TrafficProblem
     {
         private string reason;
-        private static List<TrafficProblem> problems;
+        private static ICollection<TrafficProblem> problems;
 
         private static string filename = "problems.xml";
 
@@ -71,7 +71,7 @@ namespace TrafficApp.Model.Problem
             }
         }
 
-        public static List<TrafficProblem> Problems
+        public static ICollection<TrafficProblem> Problems
         {
             get
             {
