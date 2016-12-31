@@ -11,7 +11,7 @@ namespace TrafficApp.Model.Highway
     {
         private string name;
 
-        private static List<Road> roads;
+        private static ICollection<Road> roads;
 
         private static string filename = "roads.xml";
 
@@ -193,7 +193,7 @@ namespace TrafficApp.Model.Highway
             }
         }
 
-        public static List<Road> Roads
+        public static ICollection<Road> Roads
         {
             get
             {
