@@ -95,6 +95,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Factories\TrafficRepositoryFactory.cs" />
+    <Compile Include="Interfaces\ITrafficRepository.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -104,6 +106,8 @@
     <Compile Include="Model\Problem\TrafficProblem.cs" />
     <Compile Include="Model\Traffic\Event.cs" />
     <Compile Include="Model\Traffic\Traffic.cs" />
+    <Compile Include="Repositories\Traffic\Fake.cs" />
+    <Compile Include="Repositories\Traffic\Web.cs" />
     <Compile Include="Views\Traffic\All.xaml.cs">
       <DependentUpon>All.xaml</DependentUpon>
     </Compile>

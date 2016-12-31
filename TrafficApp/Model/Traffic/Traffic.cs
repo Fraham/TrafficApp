@@ -5,58 +5,35 @@ using System.Threading.Tasks;
 using TrafficApp.Model.Highway;
 using Windows.Web.Syndication;
 using System.Linq;
+using TrafficApp.Factories;
 
 namespace TrafficApp.Model.Traffic
 {
     public class Traffic
     {
-        private ICollection<Event> events;
-        private string trafficURL = "";
+        private IEnumerable<Event> events;
+        //private string trafficURL = "";
 
         private ICollection<Road> problemRoads;
 
         public Traffic()
         {
-            TrafficURL = "http://api.hatrafficinfo.dft.gov.uk/datexphase2/dtxRss.aspx?srcUrl=http://hatrafficinfo.dft.gov.uk/feeds/rss/UnplannedEvents.xml&justToday=Y&sortfield=road&sortorder=up";
+            //TrafficURL = "http://api.hatrafficinfo.dft.gov.uk/datexphase2/dtxRss.aspx?srcUrl=http://hatrafficinfo.dft.gov.uk/feeds/rss/UnplannedEvents.xml&justToday=Y&sortfield=road&sortorder=up";
         }
 
-        public Traffic(string trafficURL)
-        {
-            TrafficURL = trafficURL;
-        }
+        //public Traffic(string trafficURL)
+        //{
+        //    TrafficURL = trafficURL;
+        //}
 
-        public Traffic(ICollection<Event> events)
-        {
-            Events = events;
-        }
+        //public Traffic(ICollection<Event> events)
+        //{
+        //    Events = events;
+        //}
 
         public async Task<string> Process(bool showMotorways, bool showARoads)
         {
-            Events = new List<Event>();
-
-            SyndicationClient client = new SyndicationClient();
-
-            Uri feedUri = new Uri(TrafficURL);
-
-            var feed = await client.RetrieveFeedAsync(feedUri);
-
-            foreach (SyndicationItem item in feed.Items)
-            {
-                try
-                {
-                    Event newEvent = new Event(item.Title.Text, item.Summary.Text);
-                    newEvent.Process();
-                    Events.Add(newEvent);
-
-                    if (!ProblemRoads.Contains(newEvent.Road))
-                    {
-                        ProblemRoads.Add(newEvent.Road);
-                    }
-                }
-                catch (Exception)
-                {
-                }
-            }
+            Events = await TrafficRepositoryFactory.GetRepository("web").GetTrafficProblem();
 
             return Filter(showMotorways, showARoads);
         }
@@ -80,7 +57,7 @@ namespace TrafficApp.Model.Traffic
             return EventsListToString(Events.Where(e => (e.Road is Motorway && showMotorways) || (e.Road is ARoad && showARoads)));
         }
 
-        public ICollection<Event> Events
+        public IEnumerable<Event> Events
         {
             get
             {
@@ -98,18 +75,18 @@ namespace TrafficApp.Model.Traffic
             }
         }
 
-        public string TrafficURL
-        {
-            get
-            {
-                return trafficURL;
-            }
+        //public string TrafficURL
+        //{
+        //    get
+        //    {
+        //        return trafficURL;
+        //    }
 
-            set
-            {
-                trafficURL = value;
-            }
-        }
+        //    set
+        //    {
+        //        trafficURL = value;
+        //    }
+        //}
 
         public new string ToString
         {
