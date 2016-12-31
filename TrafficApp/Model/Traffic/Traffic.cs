@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TrafficApp.Model.Highway;
 using Windows.Web.Syndication;
+using System.Linq;
 
 namespace TrafficApp.Model.Traffic
 {
@@ -76,21 +77,7 @@ namespace TrafficApp.Model.Traffic
 
         public string Filter(bool showMotorways, bool showARoads)
         {
-            List<Event> eventList = new List<Event>();
-
-            foreach (Event e in Events)
-            {
-                if (e.Road is Motorway && showMotorways)
-                {
-                    eventList.Add(e);
-                }
-                if (e.Road is ARoad && showARoads)
-                {
-                    eventList.Add(e);
-                }
-            }
-
-            return EventsListToString(eventList);
+            return EventsListToString(Events.Where(e => (e.Road is Motorway && showMotorways) || (e.Road is ARoad && showARoads)));
         }
 
         public ICollection<Event> Events
